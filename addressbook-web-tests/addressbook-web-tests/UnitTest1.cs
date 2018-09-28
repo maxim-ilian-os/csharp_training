@@ -10,5 +10,10 @@ namespace addressbook_web_tests
         public void TestMethod1()
         {
         }
+
+        [TestMethod]
+        public void TestMethod2()
+        {
+        }
     }
 }
