@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Text;
+using System.Text.RegularExpressions;
+using System.Threading;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Firefox;
+using OpenQA.Selenium.Support.UI;
 
 namespace SeleniumTests
 {
@@ -19,9 +22,9 @@ namespace SeleniumTests
         {
             FirefoxOptions options = new FirefoxOptions();
             options.UseLegacyImplementation = true;
-            options.BrowserExecutableLocation = @"C:\Program Files (x86)\Mozilla Firefox\firefox.exe";
+            //options.BrowserExecutableLocation = @"C:\Program Files\Mozilla Firefox\firefox.exe";
+            options.BrowserExecutableLocation = @"I:\firefox.exe";
             driver = new FirefoxDriver(options);
-            /*baseURL = "https://www.katalon.com/";*/
             baseURL = "http://localhost/addressbook/";
             verificationErrors = new StringBuilder();
         }
@@ -43,27 +46,24 @@ namespace SeleniumTests
         [Test]
         public void TheUntitledTestCaseTest()
         {
-            /*driver.Navigate().GoToUrl("http://localhost/addressbook/");*/
-            driver.Navigate().GoToUrl(baseURL);
+            driver.Navigate().GoToUrl("http://localhost/addressbook/");
             driver.FindElement(By.Name("user")).Click();
             driver.FindElement(By.Name("user")).Clear();
             driver.FindElement(By.Name("user")).SendKeys("admin");
             driver.FindElement(By.Name("pass")).Clear();
             driver.FindElement(By.Name("pass")).SendKeys("secret");
             driver.FindElement(By.XPath("(.//*[normalize-space(text()) and normalize-space(.)='Password:'])[1]/following::input[2]")).Click();
-            driver.FindElement(By.LinkText("add new")).Click();
-            driver.FindElement(By.Name("firstname")).Click();
             driver.FindElement(By.LinkText("groups")).Click();
-            driver.FindElement(By.Name("new")).Click();
+            driver.FindElement(By.XPath("(.//*[normalize-space(text()) and normalize-space(.)='Groups'])[1]/following::input[4]")).Click();
             driver.FindElement(By.Name("group_name")).Click();
             driver.FindElement(By.Name("group_name")).Clear();
-            driver.FindElement(By.Name("group_name")).SendKeys("qqq");
+            driver.FindElement(By.Name("group_name")).SendKeys("ssss");
             driver.FindElement(By.Name("group_header")).Click();
             driver.FindElement(By.Name("group_header")).Clear();
-            driver.FindElement(By.Name("group_header")).SendKeys("qqq");
+            driver.FindElement(By.Name("group_header")).SendKeys("sssssss");
             driver.FindElement(By.Name("group_footer")).Click();
             driver.FindElement(By.Name("group_footer")).Clear();
-            driver.FindElement(By.Name("group_footer")).SendKeys("qqq");
+            driver.FindElement(By.Name("group_footer")).SendKeys("sssssssssss");
             driver.FindElement(By.Name("submit")).Click();
             driver.FindElement(By.LinkText("group page")).Click();
             driver.FindElement(By.LinkText("Logout")).Click();
