@@ -1,11 +1,8 @@
 ﻿using System;
 using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Firefox;
-using OpenQA.Selenium.Support.UI;
 
 namespace SeleniumTests
 {
@@ -22,7 +19,7 @@ namespace SeleniumTests
         {
             FirefoxOptions options = new FirefoxOptions();
             options.UseLegacyImplementation = true;
-            options.BrowserExecutableLocation = @"C:\Program Files\Mozilla Firefox\firefox.exe";
+            options.BrowserExecutableLocation = @"C:\Program Files (x86)\Mozilla Firefox\firefox.exe";
             driver = new FirefoxDriver(options);
             /*baseURL = "https://www.katalon.com/";*/
             baseURL = "http://localhost/addressbook/";
@@ -46,7 +43,8 @@ namespace SeleniumTests
         [Test]
         public void TheUntitledTestCaseTest()
         {
-            driver.Navigate().GoToUrl("http://localhost/addressbook/");
+            /*driver.Navigate().GoToUrl("http://localhost/addressbook/");*/
+            driver.Navigate().GoToUrl(baseURL);
             driver.FindElement(By.Name("user")).Click();
             driver.FindElement(By.Name("user")).Clear();
             driver.FindElement(By.Name("user")).SendKeys("admin");
