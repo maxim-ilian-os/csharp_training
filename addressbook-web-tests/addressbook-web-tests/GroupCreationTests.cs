@@ -23,7 +23,7 @@ namespace WebAddressbookTests
             FirefoxOptions options = new FirefoxOptions();
             options.UseLegacyImplementation = true;
             //options.BrowserExecutableLocation = @"C:\Program Files\Mozilla Firefox\firefox.exe";
-            options.BrowserExecutableLocation = @"I:\firefox.exe";
+            options.BrowserExecutableLocation = @"I:\Program Files (x86)\Mozilla Firefox\firefox.exe";
             driver = new FirefoxDriver(options);
             baseURL = "http://localhost/";
             verificationErrors = new StringBuilder();
