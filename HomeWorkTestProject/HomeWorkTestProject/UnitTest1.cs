@@ -58,7 +58,7 @@ namespace HW_WebAddressbookTests
             driver.FindElement(By.Name("group_name")).Clear();
             driver.FindElement(By.Name("group_name")).SendKeys("Home Work Group");
             driver.FindElement(By.Name("group_header")).Clear();
-            driver.FindElement(By.Name("group_header")).SendKeys("<coming soon>");
+            driver.FindElement(By.Name("group_header")).SendKeys("<There is <Group header (Logo):> should be here>");
             driver.FindElement(By.Name("group_footer")).Click();
             driver.FindElement(By.Name("group_footer")).SendKeys("<Home Work Group>");
             driver.FindElement(By.Name("submit")).Click();
