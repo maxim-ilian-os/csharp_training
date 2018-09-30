@@ -7,10 +7,10 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.Support.UI;
 
-namespace SeleniumTests
+namespace WebAddressbookTests
 {
     [TestFixture]
-    public class UntitledTestCase
+    public class GroupCreationTests
     {
         private IWebDriver driver;
         private StringBuilder verificationErrors;
@@ -25,7 +25,7 @@ namespace SeleniumTests
             //options.BrowserExecutableLocation = @"C:\Program Files\Mozilla Firefox\firefox.exe";
             options.BrowserExecutableLocation = @"I:\firefox.exe";
             driver = new FirefoxDriver(options);
-            baseURL = "http://localhost/addressbook/";
+            baseURL = "http://localhost/";
             verificationErrors = new StringBuilder();
         }
 
@@ -44,9 +44,9 @@ namespace SeleniumTests
         }
 
         [Test]
-        public void TheUntitledTestCaseTest()
+        public void GroupCreationTest()
         {
-            driver.Navigate().GoToUrl("http://localhost/addressbook/");
+            driver.Navigate().GoToUrl(baseURL + "addressbook/");
             driver.FindElement(By.Name("user")).Click();
             driver.FindElement(By.Name("user")).Clear();
             driver.FindElement(By.Name("user")).SendKeys("admin");
@@ -57,6 +57,7 @@ namespace SeleniumTests
             driver.FindElement(By.XPath("(.//*[normalize-space(text()) and normalize-space(.)='Groups'])[1]/following::input[4]")).Click();
             driver.FindElement(By.Name("group_name")).Click();
             driver.FindElement(By.Name("group_name")).Clear();
+            Thread.Sleep(4000);
             driver.FindElement(By.Name("group_name")).SendKeys("ssss");
             driver.FindElement(By.Name("group_header")).Click();
             driver.FindElement(By.Name("group_header")).Clear();
