@@ -46,8 +46,8 @@ namespace GroupCreationTests
         public void HW_ContactCreationWebAddressbookTest()
         {
             OpenHomePage();
-            Login();
-            AddNewMenu();
+            Login("admin","secret");
+            InitContactCreation();
             FillOutContactData();
             SubmitContactCreation();
             ReturnToContactsMainPage();
@@ -112,18 +112,18 @@ namespace GroupCreationTests
             
         }
 
-        private void AddNewMenu()
+        private void InitContactCreation()
         {
             driver.FindElement(By.LinkText("add new")).Click();
         }
 
-        private void Login()
+        private void Login(string username, string userpassword)
         {
             driver.FindElement(By.Name("user")).Click();
             driver.FindElement(By.Name("user")).Clear();
-            driver.FindElement(By.Name("user")).SendKeys("admin");
+            driver.FindElement(By.Name("user")).SendKeys(username);
             driver.FindElement(By.Name("pass")).Clear();
-            driver.FindElement(By.Name("pass")).SendKeys("secret");
+            driver.FindElement(By.Name("pass")).SendKeys(userpassword);
             driver.FindElement(By.CssSelector("input[type=\"submit\"]")).Click();
         }
 
