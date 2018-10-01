@@ -47,7 +47,6 @@ namespace HW_WebAddressbookTests
         {
             driver.Navigate().GoToUrl(baseURL + "addressbook/");
             driver.FindElement(By.Name("user")).Click();
-            driver.FindElement(By.Name("user")).Clear();
             driver.FindElement(By.Name("user")).SendKeys("admin");
             driver.FindElement(By.Name("pass")).Clear();
             driver.FindElement(By.Name("pass")).SendKeys("secret");
@@ -55,7 +54,6 @@ namespace HW_WebAddressbookTests
             driver.FindElement(By.LinkText("groups")).Click();
             driver.FindElement(By.Name("new")).Click();
             driver.FindElement(By.Name("group_name")).Click();
-            driver.FindElement(By.Name("group_name")).Clear();
             driver.FindElement(By.Name("group_name")).SendKeys("Home Work Group");
             driver.FindElement(By.Name("group_header")).Clear();
             driver.FindElement(By.Name("group_header")).SendKeys("<There is <Group header (Logo):> should be here>");
