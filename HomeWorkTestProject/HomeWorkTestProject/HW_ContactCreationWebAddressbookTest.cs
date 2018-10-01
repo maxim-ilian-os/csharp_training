@@ -7,10 +7,10 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.Support.UI;
 
-namespace GroupCreationTests
+namespace HW_WebAddressbookTests
 {
     [TestFixture]
-    public class UntitledTestCase
+    public class UntitledTestCase 
     {
         private IWebDriver driver;
         private StringBuilder verificationErrors;
@@ -46,7 +46,7 @@ namespace GroupCreationTests
         public void HW_ContactCreationWebAddressbookTest()
         {
             OpenHomePage();
-            Login("admin","secret");
+            Login(new AccountData("admin","secret"));
             InitContactCreation();
             FillOutContactData();
             SubmitContactCreation();
@@ -117,13 +117,13 @@ namespace GroupCreationTests
             driver.FindElement(By.LinkText("add new")).Click();
         }
 
-        private void Login(string username, string userpassword)
+        private void Login(AccountData account)
         {
             driver.FindElement(By.Name("user")).Click();
             driver.FindElement(By.Name("user")).Clear();
-            driver.FindElement(By.Name("user")).SendKeys(username);
+            driver.FindElement(By.Name("user")).SendKeys(account.Username);
             driver.FindElement(By.Name("pass")).Clear();
-            driver.FindElement(By.Name("pass")).SendKeys(userpassword);
+            driver.FindElement(By.Name("pass")).SendKeys(account.Password);
             driver.FindElement(By.CssSelector("input[type=\"submit\"]")).Click();
         }
 
