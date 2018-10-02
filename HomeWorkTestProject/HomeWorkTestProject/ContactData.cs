@@ -5,33 +5,46 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace HW_WebAddressbookTests
+
 {
     class ContactData
     {
         private string firstname;
-        private string middlename;
+        private string middlename ;
         private string lastname;
-        private string nickname;
+        private string nickname ;
         //private string photo;
-        private string title;
-        private string company;
-        private string address;
+        private string title ;
+        private string company ;
+        private string address ;
         // telephon;
-        private string hometel;
+        private string hometel = "";
         private string mobiletel;
-        private string worktel;
+        private string worktel ="";
         //private string fax;
-        private string e_mail;
+        private string e_mail ="";
         //private string e_mail2;
         //private string e_mail3;
-        private string homepage;
-        private string birthday;
-        private string anniversary;
-        private string group;
+        private string homepage ="";
+        // birthday;
+        private string bday;
+        private string bmonth;
+        private string byear;
+        //anniversary;
+        private string aday = "";
+        private string amounth = "";
+        private string ayear = "";
+        private string group = "";
         // Secondary;
-        private string secaddress;
-        private string sechome;
-        private string notes;
+        private string secaddress ="";
+        private string sechome ="";
+        private string notes = "";
+
+        public ContactData(string firstname, string lastname)
+        {
+            this.firstname = firstname;
+            this.lastname = lastname;
+        }
 
         public string Firstname
         {
@@ -133,12 +146,15 @@ namespace HW_WebAddressbookTests
             set => homepage = value;
         }
        
-        public string Birthday { get => birthday; set => birthday = value; }
-        public string Anniversary { get => anniversary; set => anniversary = value; }
         public string Group { get => group; set => group = value; }
         public string Secaddress { get => secaddress; set => secaddress = value; }
         public string Sechome { get => sechome; set => sechome = value; }
         public string Notes { get => notes; set => notes = value; }
+        public string Bday { get => bday; set => bday = value; }
+        public string Bmouth { get => bmonth; set => bmonth = value; }
+        public string Byear { get => byear; set => byear = value; }
+        public string Aday { get => aday; set => aday = value; }
+        public string Amounth { get => amounth; set => amounth = value; }
+        public string Ayear { get => ayear; set => ayear = value; }
     }
-
 }
