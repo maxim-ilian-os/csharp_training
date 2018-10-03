@@ -43,7 +43,7 @@ namespace HW_WebAddressbookTests
         }
 
         [Test]
-        public void Test_HW_ContactCreatTest()
+        public void HW_ContactCreatoinTest()
         {
             OpenHomePage();
             Login(new AccountData("admin", "secret"));
