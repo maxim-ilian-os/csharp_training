@@ -13,33 +13,30 @@ namespace HW_WebAddressbookTests
         private string middlename ;
         private string lastname;
         private string nickname ;
-        //private string photo;
+        private string photo ="";
         private string title ;
         private string company ;
         private string address ;
-        // telephon;
-        private string hometel = "";
+        private string hometel ;
         private string mobiletel;
         private string worktel ="";
-        //private string fax;
+        private string fax = "Type \"fax number\" here";
         private string e_mail ="";
-        //private string e_mail2;
-        //private string e_mail3;
+        private string e_mail2 = "Type \"E-mail2\" here";
+        private string e_mail3 = "Type \"E-mail3\" here";
         private string homepage ="";
-        // birthday;
         private string bday;
         private string bmonth;
         private string byear;
-        //anniversary;
         private string aday = "";
         private string amounth = "";
         private string ayear = "";
         private string group = "";
-        // Secondary;
         private string secaddress ="";
         private string sechome ="";
         private string notes = "";
 
+        
         public ContactData(string firstname, string lastname)
         {
             this.firstname = firstname;
@@ -156,5 +153,9 @@ namespace HW_WebAddressbookTests
         public string Aday { get => aday; set => aday = value; }
         public string Amounth { get => amounth; set => amounth = value; }
         public string Ayear { get => ayear; set => ayear = value; }
+        public string E_mail2 { get => e_mail2; set => e_mail2 = value; }
+        public string E_mail3 { get => e_mail3; set => e_mail3 = value; }
+        public string Fax { get => fax; set => fax = value; }
+        public string Photo { get => photo; set => photo = value; }
     }
 }

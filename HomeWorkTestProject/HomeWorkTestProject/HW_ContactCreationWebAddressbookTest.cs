@@ -10,7 +10,7 @@ using OpenQA.Selenium.Support.UI;
 namespace HW_WebAddressbookTests
 {
     [TestFixture]
-    public class UntitledTestCase 
+    public class UntitledTestCase
     {
         private IWebDriver driver;
         private StringBuilder verificationErrors;
@@ -43,10 +43,10 @@ namespace HW_WebAddressbookTests
         }
 
         [Test]
-        public void HW_ContactCreationWebAddressbookTest()
+        public void Test_HW_ContactCreatTest()
         {
             OpenHomePage();
-            Login(new AccountData("admin","secret"));
+            Login(new AccountData("admin", "secret"));
             InitContactCreation();
             ContactData contact = new ContactData("Ivan", "Mazepa");
             contact.Middlename = "Stepanovich";
@@ -64,15 +64,15 @@ namespace HW_WebAddressbookTests
             FillOutContactData(contact);
             SubmitContactCreation();
             ReturnToContactsMainPage();
-            /*LogOut();*/
+            //LogOut();
         }
 
-       
 
-        /*private void LogOut()
+
+        private void LogOut()
         {
             driver.FindElement(By.LinkText("Logout")).Click();
-        }*/
+        }
 
         private void ReturnToContactsMainPage()
         {
@@ -87,7 +87,7 @@ namespace HW_WebAddressbookTests
 
         private void FillOutContactData(ContactData contact)
         {
-            
+
             driver.FindElement(By.Name("firstname")).Click();
             driver.FindElement(By.Name("firstname")).Clear();
             driver.FindElement(By.Name("firstname")).SendKeys(contact.Firstname);
@@ -110,18 +110,16 @@ namespace HW_WebAddressbookTests
             driver.FindElement(By.Name("email")).Clear();
             driver.FindElement(By.Name("email")).SendKeys(contact.E_mail);
             driver.FindElement(By.Name("bday")).Click();
-            new SelectElement(driver.FindElement(By.Name("bday"))).SelectByText("20");
-            driver.FindElement(By.CssSelector("option[value=\"20\"]")).Click();
+            driver.FindElement(By.CssSelector("option[value=" + "\"" + contact.Bday + "\"" + "]")).Click();
             driver.FindElement(By.Name("bmonth")).Click();
-            new SelectElement(driver.FindElement(By.Name("bmonth"))).SelectByText("March");
-            driver.FindElement(By.CssSelector("option[value=\"March\"]")).Click();
+            driver.FindElement(By.CssSelector("option[value=" + "\"" + contact.Bmouth + "\"" + "]")).Click();
             driver.FindElement(By.Name("byear")).Click();
             driver.FindElement(By.Name("byear")).Clear();
             driver.FindElement(By.Name("byear")).SendKeys(contact.Byear);
             driver.FindElement(By.Name("notes")).Click();
             driver.FindElement(By.Name("notes")).Clear();
             driver.FindElement(By.Name("notes")).SendKeys(contact.Notes);
-            
+
         }
 
         private void InitContactCreation()
