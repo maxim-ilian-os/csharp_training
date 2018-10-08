@@ -49,9 +49,11 @@ namespace HW_WebAddressbookTests
             Login(new AccountData("admin","secret"));
             OpenGroupPage();
             InitGroupeCreation();
-            GroupData group = new GroupData("Focus Group A");
-            group.Gheader = "Focus A";
-            group.Gfooter = "Focus A footer";
+            GroupData group = new GroupData("Focus Group A")
+            {
+                Gheader = "Focus A",
+                Gfooter = "Focus A footer"
+            };
             FillOutGroupData(group);
             SubmitGroupCreation();
             ReturnToMainGroupPage();
