@@ -11,13 +11,14 @@ namespace HW_WebAddressbookTests
     {
         private string baseURL;
 
-        public NavigationHelper(IWebDriver driver, string baseURL) : base(driver)
-        {            
-            this.baseURL = baseURL;
+        public NavigationHelper(ApplicationManager manager, string baseURL) : base(manager)
+        {
+           this.baseURL = baseURL;
         }
 
         public void OpenHomePage()
         {
+            //driver.Navigate().GoToUrl(manager.BaseURL + "addressbook/edit.php");
             driver.Navigate().GoToUrl(baseURL + "addressbook/edit.php");
         }
 
@@ -26,17 +27,9 @@ namespace HW_WebAddressbookTests
             driver.FindElement(By.LinkText("groups")).Click();
         }
 
-        public void ReturnToMainGroupPage()
-        {
-            driver.FindElement(By.LinkText("group page")).Click();
-        }
+        
 
-        public void ReturnToMainContactsPage()
-        {
-            driver.FindElement(By.LinkText("home")).Click();
-        }
-
-        public void LogOut()
+       public void LogOut()
         {
             driver.FindElement(By.LinkText("Logout")).Click();
         }

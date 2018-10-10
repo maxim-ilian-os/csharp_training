@@ -42,97 +42,9 @@ namespace HW_WebAddressbookTests
             this.lastname = lastname;
         }
 
-        public string Firstname
-        {
-            get
-            {
-                return firstname;
-            }
-            set => firstname = value;
-        }
+        public string Firstname { get => firstname; set => firstname = value; }
 
-        public string Middlename
-        {
-            get
-            {
-                return middlename;
-            }
-            set => middlename = value;
-        }
-
-        public string Lastname
-        {
-            get
-            {
-                return lastname;
-            }
-            set => lastname = value;
-        }
-        public string Nickname
-        {
-            get
-            {
-                return nickname;
-            }
-            set => nickname = value;
-        }
-        public string Title
-        {
-            get
-            {
-                return title;
-            }
-            set => title = value;
-        }
-        public string Company
-        {
-            get
-            {
-                return company;
-            }
-            set => company = value;
-        }
-        public string Address
-        {
-            get
-            {
-                return address;
-            }
-            set => address = value;
-        }
-        public string Hometel
-        {
-            get
-            {
-                return hometel;
-            }
-            set => hometel = value;
-        }
-        public string Mobiletel
-        {
-            get
-            {
-                return mobiletel;
-            }
-            set => mobiletel = value;
-        }
-        public string Worktel
-        {
-            get
-            {
-                return worktel;
-            }
-            set => worktel = value;
-        }
-        public string E_mail
-        {
-            get
-            {
-                return e_mail;
-            }
-            set => e_mail = value;
-        }
-
+       
         public string Homepage
         {
             get
@@ -155,6 +67,18 @@ namespace HW_WebAddressbookTests
         public string E_mail2 { get => e_mail2; set => e_mail2 = value; }
         public string E_mail3 { get => e_mail3; set => e_mail3 = value; }
         public string Fax { get => fax; set => fax = value; }
-        public string Photo { get => photo; set => photo = value; }
+        public string Photo { get => Photo1; set => Photo1 = value; }
+        public string Middlename { get => middlename; set => middlename = value; }
+        public string Lastname { get => lastname; set => lastname = value; }
+        public string Nickname { get => nickname; set => nickname = value; }
+        public string Photo1 { get => photo; set => photo = value; }
+        public string Title { get => title; set => title = value; }
+        public string Company { get => company; set => company = value; }
+        public string Address { get => address; set => address = value; }
+        public string Hometel { get => hometel; set => hometel = value; }
+        public string Mobiletel { get => mobiletel; set => mobiletel = value; }
+        public string Worktel { get => worktel; set => worktel = value; }
+        public string E_mail { get => E_mail1; set => E_mail1 = value; }
+        public string E_mail1 { get => e_mail; set => e_mail = value; }
     }
 }

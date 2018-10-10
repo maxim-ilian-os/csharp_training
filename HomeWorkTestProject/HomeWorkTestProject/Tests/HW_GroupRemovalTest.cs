@@ -10,14 +10,10 @@ namespace HW_WebAddressbookTests
     public class GroupRemovalTests : HW_TestBase
     {
         [Test]
-        public void HW_GrroupRemovalTest()
+        public void HW_GroupRemovalTest()
         {
-            appMan.Navigator.OpenHomePage();
-            appMan.Auth.Login(new AccountData("admin", "secret"));
-            appMan.Navigator.OpenGroupPage();
-            appMan.Group.SelectGroup();
-            appMan.Group.RemoveGroup();
-            appMan.Navigator.ReturnToMainGroupPage();
+            //appMan.Navigator.OpenGroupPage();
+            appMan.Group.Remove();
             //appMan.Navigator.LogOut();
         }
     }

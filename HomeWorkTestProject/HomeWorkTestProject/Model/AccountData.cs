@@ -16,30 +16,8 @@ namespace HW_WebAddressbookTests
             this.username = username;
             this.password = password;
         }
-
-        public string Username
-        {
-            set
-            {
-                username = value;
-            }
-            get
-            {
-                return username;
-            }
-        }
-
-        public string Password
-        {
-            set
-            {
-                password = value;
-            }
-
-            get
-            {
-                return password;
-            }
-        }
+               
+        public string Username { get => username; set => username = value; }
+        public string Password { get => password; set => password = value; }
     }
 }

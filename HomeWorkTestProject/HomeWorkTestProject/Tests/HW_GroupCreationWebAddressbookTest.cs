@@ -11,20 +11,27 @@ namespace HW_WebAddressbookTests
     {
         [Test]
         public void HW_GroupCreationTest()
-        {
-            appMan.Navigator.OpenHomePage();
-            appMan.Auth.Login(new AccountData("admin","secret"));
-            appMan.Navigator.OpenGroupPage();
-            appMan.Group.InitGroupeCreation();
+        {            
             GroupData group = new GroupData("Focus Group A")
             {
                 Gheader = "Focus A",
                 Gfooter = "Focus A footer"
             };
-            appMan.Group.FillOutGroupData(group);
-            appMan.Group.SubmitGroupCreation();
-            appMan.Navigator.ReturnToMainGroupPage();
+            
+            appMan.Group.Create(group);
             //appMan.Navigator.LogOut();
+        }
+
+        [Test]
+        public void HW_EmptyGroupCreationTest()
+        {
+            GroupData group = new GroupData("")
+            {
+                Gheader = "",
+                Gfooter = ""
+            };
+            appMan.Group.Create(group);
+           //appMan.Navigator.LogOut();
         }
     }
 }

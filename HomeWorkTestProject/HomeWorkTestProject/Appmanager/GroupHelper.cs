@@ -9,21 +9,35 @@ namespace HW_WebAddressbookTests
 {
     public class GroupHelper : HelperBase
     {
-        public GroupHelper(IWebDriver driver) : base(driver)
+        public GroupHelper(ApplicationManager manager) : base(manager)
         {
         }
 
-        public void InitGroupeCreation()
+        public GroupHelper Create(GroupData group)
+        {
+            manager.Navigator.OpenGroupPage();
+
+            InitGroupeCreation();
+            FillOutGroupData(group);
+            SubmitGroupCreation();
+            ReturnToMainGroupPage();
+            return this;
+        }
+
+
+        public GroupHelper InitGroupeCreation()
         {
             driver.FindElement(By.Name("new")).Click();
+            return this;
         }
 
-        public void SubmitGroupCreation()
+        public GroupHelper SubmitGroupCreation()
         {
             driver.FindElement(By.Name("submit")).Click();
+            return this;
         }
 
-        public void FillOutGroupData(GroupData group)
+            public GroupHelper FillOutGroupData(GroupData group)
         {
             driver.FindElement(By.Name("group_name")).Click();
             driver.FindElement(By.Name("group_name")).Clear();
@@ -34,16 +48,35 @@ namespace HW_WebAddressbookTests
             driver.FindElement(By.Name("group_footer")).Click();
             driver.FindElement(By.Name("group_footer")).Clear();
             driver.FindElement(By.Name("group_footer")).SendKeys(group.Gfooter);
+            return this;
         }
 
-        public void SelectGroup()
+        public GroupHelper SelectGroup()
         {
             driver.FindElement(By.Name("selected[]")).Click();
+            return this;
         }
 
-        public void RemoveGroup()
+        public GroupHelper RemoveGroup()
         {
             driver.FindElement(By.XPath("(//input[@name='delete'])[2]")).Click();
+            return this;
+        }
+
+        public GroupHelper Remove()
+        {
+            manager.Navigator.OpenGroupPage();
+
+            SelectGroup();
+            RemoveGroup();
+            ReturnToMainGroupPage();
+            return this;
+        }
+
+        public GroupHelper ReturnToMainGroupPage()
+        {
+            driver.FindElement(By.LinkText("group page")).Click();
+            return this;
         }
     }
 }

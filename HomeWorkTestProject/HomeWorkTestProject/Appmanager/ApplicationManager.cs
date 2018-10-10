@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using OpenQA.Selenium.Chrome;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,20 +18,32 @@ namespace HW_WebAddressbookTests
         protected GroupHelper groupHelper;
         protected ContactHelper contactHelper;
 
-
+        
         public ApplicationManager()
         {
-            /*ChromeOptions options = new ChromeOptions();
+            //ChromeOptions options = new ChromeOptions();
             driver = new ChromeDriver();
             baseURL = "http://localhost/";
-            verificationErrors = new StringBuilder();*/
+            //verificationErrors = new StringBuilder();
 
-            loginHelper = new LoginHelper(driver);
-            navigator = new NavigationHelper(driver, baseURL);
-            groupHelper = new GroupHelper(driver);
+            loginHelper = new LoginHelper(this);
+            navigator = new NavigationHelper(this, baseURL);
+            groupHelper = new GroupHelper(this);
+            contactHelper = new ContactHelper(this);
         }
 
+        public IWebDriver Driver
+        {
+            get
+            {
+                return driver;
+            }
+        }
+
+        public string BaseURL { get => baseURL; }
+
         //public LoginHelper Auth => loginHelper;
+
         public LoginHelper Auth
         {
             get
@@ -39,29 +52,11 @@ namespace HW_WebAddressbookTests
             }
         }
 
-        public NavigationHelper Navigator
-        {
-            get
-            {
-                return navigator;
-            }
-        }
+        public NavigationHelper Navigator => navigator;
 
-        public GroupHelper Group
-        {
-            get
-            {
-                return groupHelper;
-            }
-        }
+        public GroupHelper Group => groupHelper;
 
-        public ContactHelper Contact
-        {
-            get
-            {
-                return contactHelper;
-            }
-        }
+        public ContactHelper Contact => contactHelper;
 
         public void Stop()
         {
