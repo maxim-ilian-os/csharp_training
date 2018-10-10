@@ -70,6 +70,12 @@ namespace HW_WebAddressbookTests
             acceptNextAlert = true;
         }
 
+        public void SelectContact()
+        {
+            driver.FindElement(By.CssSelector("input[type='checkbox']")).Click();
+            //driver.FindElement(By.CssSelector("#MassCB")).Click();
+        }
+
         public void DeleteContact()
         {
             driver.FindElement(By.XPath("//input[@value='Delete']")).Click();

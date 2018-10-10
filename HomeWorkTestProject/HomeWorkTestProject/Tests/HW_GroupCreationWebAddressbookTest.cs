@@ -12,19 +12,19 @@ namespace HW_WebAddressbookTests
         [Test]
         public void HW_GroupCreationTest()
         {
-            navigator.OpenHomePage();
-            loginHelper.Login(new AccountData("admin","secret"));
-            navigator.OpenGroupPage();
-            groupHelper.InitGroupeCreation();
+            appMan.Navigator.OpenHomePage();
+            appMan.Auth.Login(new AccountData("admin","secret"));
+            appMan.Navigator.OpenGroupPage();
+            appMan.Group.InitGroupeCreation();
             GroupData group = new GroupData("Focus Group A")
             {
                 Gheader = "Focus A",
                 Gfooter = "Focus A footer"
             };
-            groupHelper.FillOutGroupData(group);
-            groupHelper.SubmitGroupCreation();
-            navigator.ReturnToMainGroupPage();
-            //navigator.LogOut();
+            appMan.Group.FillOutGroupData(group);
+            appMan.Group.SubmitGroupCreation();
+            appMan.Navigator.ReturnToMainGroupPage();
+            //appMan.Navigator.LogOut();
         }
     }
 }
