@@ -12,13 +12,13 @@ namespace HW_WebAddressbookTests
         [Test]
         public void HW_GrroupRemovalTest()
         {
-            OpenHomePage();
-            Login(new AccountData("admin", "secret"));
-            OpenGroupPage();
-            SelectGroup();
-            RemoveGroup();
-            ReturnToMainGroupPage();
-            //LogOut();
-        }        
+            navigator.OpenHomePage();
+            loginHelper.Login(new AccountData("admin", "secret"));
+            navigator.OpenGroupPage();
+            groupHelper.SelectGroup();
+            groupHelper.RemoveGroup();
+            navigator.ReturnToMainGroupPage();
+            //navigator.LogOut();
+        }
     }
 }

@@ -12,9 +12,9 @@ namespace HW_WebAddressbookTests
         [Test]
         public void HW_ContactCreatoinTest()
         {
-            OpenHomePage();
-            Login(new AccountData("admin", "secret"));
-            InitContactCreation();
+            navigator.OpenHomePage();
+            loginHelper.Login(new AccountData("admin", "secret"));
+            contactHelper.SubmitContactCreation();
             ContactData contact = new ContactData("Ivan", "Mazepa");
             contact.Middlename = "Stepanovich";
             contact.Nickname = "Kolodynski";
@@ -28,10 +28,10 @@ namespace HW_WebAddressbookTests
             contact.Bmouth = "March";
             contact.Byear = "1639";
             contact.Notes = "He played an important role in the Battle of Poltava";
-            FillOutContactData(contact);
-            SubmitContactCreation();
-            ReturnToMainContactsPage();
-            //LogOut();
+            contactHelper.FillOutContactData(contact);
+            contactHelper.SubmitContactCreation();
+            navigator.ReturnToMainContactsPage();
+            //navigator.LogOut();
         }
     }
 }

@@ -13,14 +13,14 @@ namespace HW_WebAddressbookTests
         [Test]
         public void HW_ContactRemovalTest()
         {
-            OpenHomePage();
-            Login(new AccountData("admin", "secret"));
-            ReturnToContactsMainPage();
+            navigator.OpenHomePage();
+            loginHelper.Login(new AccountData("admin", "secret"));
+            navigator.ReturnToMainContactsPage();
             driver.FindElement(By.CssSelector("input[type='checkbox']")).Click();
             //driver.FindElement(By.CssSelector("#MassCB")).Click();
-            DeleteContact();
-            ReturnToContactsMainPage();
-            //LogOut();
+            contactHelper.DeleteContact();
+            navigator.ReturnToMainContactsPage();
+            //navigator.LogOut();
         }
     }
 }
