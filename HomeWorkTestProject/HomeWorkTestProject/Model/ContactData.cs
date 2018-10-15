@@ -9,24 +9,24 @@ namespace HW_WebAddressbookTests
     public class ContactData
     {
         private string firstname;
-        private string middlename ;
-        private string lastname;
-        private string nickname ;
+        private string middlename = "";
+        private string lastname = "";
+        private string nickname = "";
         private string photo ="";
-        private string title ;
-        private string company ;
-        private string address ;
-        private string hometel ;
-        private string mobiletel;
+        private string title = "";
+        private string company = "";
+        private string address ="";
+        private string hometel = "";
+        private string mobiletel = "";
         private string worktel ="";
         private string fax = "Type \"fax number\" here";
         private string e_mail ="";
         private string e_mail2 = "Type \"E-mail2\" here";
         private string e_mail3 = "Type \"E-mail3\" here";
         private string homepage ="";
-        private string bday;
-        private string bmonth;
-        private string byear;
+        private string bday = "22";
+        private string bmonth = "June";
+        private string byear = "2012";
         private string aday = "";
         private string amounth = "";
         private string ayear = "";

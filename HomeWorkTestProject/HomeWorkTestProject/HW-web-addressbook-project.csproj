@@ -59,6 +59,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Tests\HW_ContactModificationTests.cs" />
+    <Compile Include="Tests\HW_GroupModificationTests.cs" />
     <Compile Include="Model\AccountData.cs" />
     <Compile Include="Appmanager\ApplicationManager.cs" />
     <Compile Include="Model\ContactData.cs" />
@@ -66,9 +68,9 @@
     <Compile Include="Model\GroupData.cs" />
     <Compile Include="Appmanager\GroupHelper.cs" />
     <Compile Include="Appmanager\HelperBase.cs" />
-    <Compile Include="Tests\HW_ContactRemovalTest.cs" />
+    <Compile Include="Tests\HW_ContactRemovalTests.cs" />
     <Compile Include="Tests\HW_GroupCreationWebAddressbookTest.cs" />
-    <Compile Include="Tests\HW_GroupRemovalTest.cs" />
+    <Compile Include="Tests\HW_GroupRemovalTests.cs" />
     <Compile Include="Tests\HW_TestBase.cs" />
     <Compile Include="Appmanager\LoginHelper.cs" />
     <Compile Include="Appmanager\NavigationHelper.cs" />

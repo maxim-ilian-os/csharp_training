@@ -24,7 +24,35 @@ namespace HW_WebAddressbookTests
             return this;
         }
 
+        public GroupHelper Remove()
+        {
+            manager.Navigator.OpenGroupPage();
 
+            SelectGroup();
+            RemoveGroup();
+            ReturnToMainGroupPage();
+            return this;
+        }
+
+        public GroupHelper RemoveGroup()
+        {
+            driver.FindElement(By.XPath("(//input[@name='delete'])[2]")).Click();
+            return this;
+        }
+
+        // public GroupHelper Modify(int v, GroupData newData)
+        public GroupHelper Modify(GroupData newData)
+        {
+            manager.Navigator.OpenGroupPage();
+            SelectGroup();
+            InitGroupeModification();
+            FillOutGroupData(newData);
+            SubmitGroupModification();
+            ReturnToMainGroupPage();
+            return this;
+        }
+
+        
         public GroupHelper InitGroupeCreation()
         {
             driver.FindElement(By.Name("new")).Click();
@@ -57,25 +85,21 @@ namespace HW_WebAddressbookTests
             return this;
         }
 
-        public GroupHelper RemoveGroup()
-        {
-            driver.FindElement(By.XPath("(//input[@name='delete'])[2]")).Click();
-            return this;
-        }
-
-        public GroupHelper Remove()
-        {
-            manager.Navigator.OpenGroupPage();
-
-            SelectGroup();
-            RemoveGroup();
-            ReturnToMainGroupPage();
-            return this;
-        }
-
-        public GroupHelper ReturnToMainGroupPage()
+       public GroupHelper ReturnToMainGroupPage()
         {
             driver.FindElement(By.LinkText("group page")).Click();
+            return this;
+        }
+
+        public GroupHelper SubmitGroupModification()
+        {
+            driver.FindElement(By.Name("update")).Click();
+            return this;
+        }
+
+        public GroupHelper InitGroupeModification()
+        {
+            driver.FindElement(By.Name("edit")).Click();
             return this;
         }
     }

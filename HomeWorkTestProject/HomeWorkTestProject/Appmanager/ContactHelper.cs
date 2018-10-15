@@ -17,6 +17,17 @@ namespace HW_WebAddressbookTests
         {
         }
 
+        public ContactHelper Modify(ContactData newCont)
+        {
+
+            ReturnToMainContactsPage();
+            SelectContactModify();
+            FillOutContactData(newCont);
+            SubmitContactModify();
+            
+            return this;
+        }
+
         public ContactHelper Create(ContactData contact)          
         {
             //manager.Navigator.OpenHomePage();
@@ -28,6 +39,7 @@ namespace HW_WebAddressbookTests
             return this;
         }
 
+        
         public ContactHelper Remove()
         {
             ReturnToMainContactsPage();
@@ -80,12 +92,6 @@ namespace HW_WebAddressbookTests
             return this;
         }
 
-        public ContactHelper SubmitContactCreation()
-        {
-            driver.FindElement(By.XPath("(//input[@name='submit'])[2]")).Click();
-            return this;
-        }
-
         public ContactHelper SelectContactTDelete(int contaciID)
         {
             driver.FindElement(By.Id("\"" + contaciID + "\"")).Click();
@@ -110,6 +116,25 @@ namespace HW_WebAddressbookTests
         public ContactHelper ReturnToMainContactsPage()
         {
             driver.FindElement(By.LinkText("home")).Click();
+            return this;
+        }
+
+        public ContactHelper SubmitContactCreation()
+        {
+            driver.FindElement(By.XPath("(//input[@name='submit'])[2]")).Click();
+            return this;
+        }
+        public ContactHelper SubmitContactModify()
+        {
+            driver.FindElement(By.XPath("(//input[@name='update'])[1]")).Click();
+            return this;
+        }
+
+        public ContactHelper SelectContactModify()
+        {
+            driver.FindElement(By.CssSelector("img[alt=\"Edit\"]")).Click();
+            //iver.FindElement(By.XPath("(//input[@name='edit'])[1]")).Click();
+
             return this;
         }
 
