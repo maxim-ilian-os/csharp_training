@@ -67,19 +67,14 @@ namespace HW_WebAddressbookTests
 
             public GroupHelper FillOutGroupData(GroupData group)
         {
-            driver.FindElement(By.Name("group_name")).Click();
-            driver.FindElement(By.Name("group_name")).Clear();
-            driver.FindElement(By.Name("group_name")).SendKeys(group.Gname);
-            driver.FindElement(By.Name("group_header")).Click();
-            driver.FindElement(By.Name("group_header")).Clear();
-            driver.FindElement(By.Name("group_header")).SendKeys(group.Gheader);
-            driver.FindElement(By.Name("group_footer")).Click();
-            driver.FindElement(By.Name("group_footer")).Clear();
-            driver.FindElement(By.Name("group_footer")).SendKeys(group.Gfooter);
+            
+            Type(By.Name("group_name"), group.Gname);
+            Type(By.Name("group_header"), group.Gheader);
+            Type(By.Name("group_footer"), group.Gfooter);
             return this;
         }
 
-        public GroupHelper SelectGroup()
+       public GroupHelper SelectGroup()
         {
             driver.FindElement(By.Name("selected[]")).Click();
             return this;

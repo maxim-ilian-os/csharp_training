@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace HW_WebAddressbookTests
@@ -17,9 +18,9 @@ namespace HW_WebAddressbookTests
         protected NavigationHelper navigator;
         protected GroupHelper groupHelper;
         protected ContactHelper contactHelper;
+        private static ThreadLocal<ApplicationManager> appMan = new ThreadLocal<ApplicationManager>();
 
-        
-        public ApplicationManager()
+        private  ApplicationManager()
         {
             //ChromeOptions options = new ChromeOptions();
             driver = new ChromeDriver();
@@ -30,6 +31,27 @@ namespace HW_WebAddressbookTests
             navigator = new NavigationHelper(this, baseURL);
             groupHelper = new GroupHelper(this);
             contactHelper = new ContactHelper(this);
+        }
+
+         ~ApplicationManager()
+        {
+            try
+            {
+                driver.Quit();
+            }
+            catch (Exception)
+            {
+                // Ignore errors if unable to close the browser
+            }
+        }
+
+        public static ApplicationManager GetInstance()
+        {
+            if(! appMan.IsValueCreated)
+            {
+                appMan.Value = new ApplicationManager();
+            }
+            return appMan.Value;
         }
 
         public IWebDriver Driver
@@ -58,17 +80,6 @@ namespace HW_WebAddressbookTests
 
         public ContactHelper Contact => contactHelper;
 
-        public void Stop()
-        {
-            try
-            {
-                driver.Quit();
-            }
-            catch (Exception)
-            {
-                // Ignore errors if unable to close the browser
-            }
-            //Assert.AreEqual("", verificationErrors.ToString());
-        }
+       
     }
 }

@@ -59,6 +59,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Appmanager\HW_TestSuiteFixture.cs" />
     <Compile Include="Tests\HW_ContactModificationTests.cs" />
     <Compile Include="Tests\HW_GroupModificationTests.cs" />
     <Compile Include="Model\AccountData.cs" />
