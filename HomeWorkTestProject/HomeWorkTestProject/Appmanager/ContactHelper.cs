@@ -19,8 +19,7 @@ namespace HW_WebAddressbookTests
 
         public ContactHelper Modify(ContactData newCont)
         {
-
-            ReturnToMainContactsPage();
+            IsContactExist();
             SelectContactModify();
             FillOutContactData(newCont);
             SubmitContactModify();
@@ -30,8 +29,6 @@ namespace HW_WebAddressbookTests
 
         public ContactHelper Create(ContactData contact)          
         {
-            //manager.Navigator.OpenHomePage();
-
             InitContactCreation();
             FillOutContactData(contact);
             SubmitContactCreation();
@@ -42,10 +39,11 @@ namespace HW_WebAddressbookTests
         
         public ContactHelper Remove()
         {
+            IsContactExist();
             ReturnToMainContactsPage();
             SelectContact();
             DeleteContact();
-            ReturnToMainContactsPage();
+            //ReturnToMainContactsPage();
             return this;
         }
 
@@ -57,8 +55,6 @@ namespace HW_WebAddressbookTests
 
         public ContactHelper FillOutContactData(ContactData contact)
         {
-
-
             Type(By.Name("firstname"), contact.Firstname);
             Type(By.Name("middlename"), contact.Middlename);
             Type(By.Name("lastname"), contact.Lastname);
@@ -122,6 +118,18 @@ namespace HW_WebAddressbookTests
             //iver.FindElement(By.XPath("(//input[@name='edit'])[1]")).Click();
 
             return this;
+        }
+
+        public void IsContactExist()
+        {
+            if (!IsElementPresent(By.CssSelector("img[alt=\"Edit\"]")))
+            {
+                InitContactCreation();
+                ContactData contact = new ContactData("Ivan", "Mazepa");
+                FillOutContactData(contact);
+                SubmitContactCreation();
+            }
+            ReturnToMainContactsPage();
         }
 
         string CloseAlertAndGetItsText()

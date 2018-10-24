@@ -16,7 +16,6 @@ namespace HW_WebAddressbookTests
         public GroupHelper Create(GroupData group)
         {
             manager.Navigator.OpenGroupPage();
-
             InitGroupeCreation();
             FillOutGroupData(group);
             SubmitGroupCreation();
@@ -27,7 +26,7 @@ namespace HW_WebAddressbookTests
         public GroupHelper Remove()
         {
             manager.Navigator.OpenGroupPage();
-
+            IsGroupExist();
             SelectGroup();
             RemoveGroup();
             ReturnToMainGroupPage();
@@ -44,6 +43,7 @@ namespace HW_WebAddressbookTests
         public GroupHelper Modify(GroupData newData)
         {
             manager.Navigator.OpenGroupPage();
+            IsGroupExist();
             SelectGroup();
             InitGroupeModification();
             FillOutGroupData(newData);
@@ -52,7 +52,18 @@ namespace HW_WebAddressbookTests
             return this;
         }
 
-        
+        private void IsGroupExist()
+        {
+            if (!IsElementPresent(By.Name("selected[]")))
+            {
+                InitGroupeCreation();
+                GroupData group = new GroupData("Empty Group");
+                FillOutGroupData(group);
+                SubmitGroupCreation();
+            }
+            manager.Navigator.OpenGroupPage();
+        }
+
         public GroupHelper InitGroupeCreation()
         {
             driver.FindElement(By.Name("new")).Click();

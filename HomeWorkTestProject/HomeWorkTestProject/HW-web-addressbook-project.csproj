@@ -59,7 +59,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="HW_LoginTests.cs" />
+    <Compile Include="Tests\HW_LoginTests.cs" />
     <Compile Include="Tests\HW_AuthTestBase.cs" />
     <Compile Include="Tests\HW_ContactModificationTests.cs" />
     <Compile Include="Tests\HW_GroupModificationTests.cs" />
