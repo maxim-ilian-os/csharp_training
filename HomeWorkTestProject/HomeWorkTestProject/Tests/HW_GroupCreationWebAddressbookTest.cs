@@ -7,7 +7,7 @@ using NUnit.Framework;
 namespace HW_WebAddressbookTests
 {
     [TestFixture]
-    public class GroupCreationTests : HW_TestBase
+    public class GroupCreationTests : HW_AuthTestBase
     {
         [Test]
         public void HW_GroupCreationTest()

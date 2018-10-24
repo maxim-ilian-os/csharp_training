@@ -8,7 +8,7 @@ using OpenQA.Selenium;
 namespace HW_WebAddressbookTests
 {
     [TestFixture]
-    public class ContactRemovalTests : HW_TestBase
+    public class ContactRemovalTests : HW_AuthTestBase
     {
         [Test]
         public void HW_ContactRemovalTest()

@@ -49,7 +49,10 @@ namespace HW_WebAddressbookTests
         {
             if(! appMan.IsValueCreated)
             {
-                appMan.Value = new ApplicationManager();
+                ApplicationManager newInstance = new ApplicationManager();
+                newInstance.Navigator.OpenHomePage();
+                appMan.Value = newInstance;
+                
             }
             return appMan.Value;
         }

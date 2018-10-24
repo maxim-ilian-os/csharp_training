@@ -13,10 +13,9 @@ namespace HW_WebAddressbookTests
         protected ApplicationManager appMan;
                 
         [SetUp]
-        public void SetupTest()
+        public void SetupApplicationManager()
         {
             appMan = ApplicationManager.GetInstance();
-
-         }
+        }
     }
 }

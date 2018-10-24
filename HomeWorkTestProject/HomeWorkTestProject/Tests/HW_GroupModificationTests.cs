@@ -9,7 +9,7 @@ namespace HW_WebAddressbookTests
 {
     [TestFixture]
 
-    public class HW_GroupModificationTests : HW_TestBase
+    public class HW_GroupModificationTests : HW_AuthTestBase
     {
      [Test]
 
