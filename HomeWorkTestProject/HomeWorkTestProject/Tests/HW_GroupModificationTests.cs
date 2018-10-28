@@ -19,8 +19,8 @@ namespace HW_WebAddressbookTests
             newData.Gfooter = "new1 footer";
             newData.Gheader = "new1 header";
 
-            //appMan.Group.Modify(1, newData);
-            appMan.Group.Modify(newData);
+            appMan.Group.Modify(0, newData);
+            //appMan.Group.Modify(newData);
         }
     }
 }

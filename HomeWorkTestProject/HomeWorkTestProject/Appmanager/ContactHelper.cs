@@ -47,6 +47,20 @@ namespace HW_WebAddressbookTests
             return this;
         }
 
+        public List<ContactData> GetContactList()
+         {
+            List<ContactData> contacts = new List<ContactData>();
+
+            manager.Navigator.OpenHomePage();
+            ICollection<IWebElement> elements = driver.FindElements(By.CssSelector("[name='entry']"));
+            System.Console.Out.Write(elements);
+            foreach (IWebElement element in elements)
+            {
+                contacts.Add(new ContactData(element.Text,""));
+            }
+            return contacts;
+        }
+
         public ContactHelper InitContactCreation()
         {
             driver.FindElement(By.LinkText("add new")).Click();

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
@@ -25,8 +26,12 @@ namespace HW_WebAddressbookTests
             contact.Bmouth = "March";
             contact.Byear = "1639";
             contact.Notes = "He played an important role in the Battle of Poltava";
+            
+            List<ContactData> oldContact = appMan.Contact.GetContactList();
             appMan.Contact.Create(contact);
-            //navigator.LogOut();
+
+            List<ContactData> newContact = appMan.Contact.GetContactList();
+            Assert.AreEqual(oldContact.Count + 1, newContact.Count);
         }
 
         [Test]

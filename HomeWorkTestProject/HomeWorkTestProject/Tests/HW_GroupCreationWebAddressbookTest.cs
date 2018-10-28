@@ -1,8 +1,5 @@
-﻿using System;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading;
-using NUnit.Framework;
+﻿using NUnit.Framework;
+using System.Collections.Generic;
 
 namespace HW_WebAddressbookTests
 {
@@ -11,15 +8,18 @@ namespace HW_WebAddressbookTests
     {
         [Test]
         public void HW_GroupCreationTest()
-        {            
+        {
             GroupData group = new GroupData("Focus Group A")
             {
                 Gheader = "Focus A",
                 Gfooter = "Focus A footer"
             };
-            
+
+            List<GroupData> oldGroups = appMan.Group.GetGroupList();
             appMan.Group.Create(group);
-            //appMan.Navigator.LogOut();
+
+            List<GroupData> newGroups = appMan.Group.GetGroupList();
+            Assert.AreEqual(oldGroups.Count + 1, newGroups.Count);
         }
 
         [Test]
@@ -30,8 +30,12 @@ namespace HW_WebAddressbookTests
                 Gheader = "",
                 Gfooter = ""
             };
+
+            List<GroupData> oldGroups = appMan.Group.GetGroupList();
             appMan.Group.Create(group);
-           //appMan.Navigator.LogOut();
+
+            List<GroupData> newGroups = appMan.Group.GetGroupList();
+            Assert.AreEqual(oldGroups.Count + 1, newGroups.Count);
         }
     }
 }
