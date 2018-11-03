@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace HW_WebAddressbookTests
@@ -22,17 +23,24 @@ namespace HW_WebAddressbookTests
             newData.Gfooter = null;
             newData.Gheader = null;
 
-            appMan.Group.IsGroupExist();
-            List<GroupData> oldGroups = appMan.Group.GetGroupList();
 
-            appMan.Group.Modify(indx, newData);
-            //appMan.Group.Modify(newData);
+            if (!appMan.Group.IsGroupTrue())
+            {
+                Thread.CurrentThread.Abort();
+            }
+            else
+            {
+                List<GroupData> oldGroups = appMan.Group.GetGroupList();
 
-            List<GroupData> newGroups = appMan.Group.GetGroupList();
-            oldGroups[indx].Gname = newData.Gname;
-            oldGroups.Sort();
-            newGroups.Sort();
-            Assert.AreEqual(oldGroups, newGroups);
+                appMan.Group.Modify(indx, newData);
+                //appMan.Group.Modify(newData);
+
+                List<GroupData> newGroups = appMan.Group.GetGroupList();
+                oldGroups[indx].Gname = newData.Gname;
+                oldGroups.Sort();
+                newGroups.Sort();
+                Assert.AreEqual(oldGroups, newGroups);
+            }
         }
     }
 }

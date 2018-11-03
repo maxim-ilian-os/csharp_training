@@ -14,15 +14,20 @@ namespace HW_WebAddressbookTests
         public void HW_GroupRemovalTest()
         {
             int indx = 0;
-            appMan.Group.IsGroupExist();
-            
+
+            if (!appMan.Group.IsGroupTrue())
+            {
+                Thread.CurrentThread.Abort();
+            }
+            else
+            { 
             List<GroupData> oldGroups = appMan.Group.GetGroupList();
             appMan.Group.Remove(indx);
 
             List<GroupData> newGroups = appMan.Group.GetGroupList();
             oldGroups.RemoveAt(indx);
             Assert.AreEqual(oldGroups, newGroups);
-          
+            }
         }
     }
 }

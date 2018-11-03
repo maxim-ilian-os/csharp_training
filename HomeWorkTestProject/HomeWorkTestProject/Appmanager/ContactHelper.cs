@@ -134,18 +134,15 @@ namespace HW_WebAddressbookTests
             return this;
         }
 
-        /*public void 1IsContactExist()
+        public bool IsContactTrue()
         {
             ReturnToMainContactsPage();
-            if (!IsElementPresent(By.CssSelector("img[alt=\"Edit\"]")))
+            if (IsElementPresent(By.CssSelector("img[alt=\"Edit\"]")))
             {
-                InitContactCreation();
-                ContactData contact = new ContactData("Ivan", "Mazepa");
-                FillOutContactData(contact);
-                SubmitContactCreation();
+                return true;
             }
-            ReturnToMainContactsPage();
-        }*/
+            return false;
+        }
 
         public ContactHelper IsContactExist()
         {

@@ -15,15 +15,19 @@ namespace HW_WebAddressbookTests
         public void HW_ContactRemovalTest()
         {
 
-            appMan.Contact.IsContactExist();
+            if (!appMan.Contact.IsContactTrue())
+            {
+                Thread.CurrentThread.Abort();
+            }
+            else
+            {
+                List<ContactData> oldContacts = appMan.Contact.GetContactList();
+                appMan.Contact.Remove();
 
-            List<ContactData> oldContacts = appMan.Contact.GetContactList();
-            appMan.Contact.Remove();
+                List<ContactData> newContacts = appMan.Contact.GetContactList();
 
-            List<ContactData> newContacts = appMan.Contact.GetContactList();
-
-            Assert.AreEqual(oldContacts.Count - 1, newContacts.Count);
-            //navigator.LogOut();
+                Assert.AreEqual(oldContacts.Count - 1, newContacts.Count);
+            }
         }
     }
 }

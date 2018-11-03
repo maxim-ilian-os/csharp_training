@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace HW_WebAddressbookTests
@@ -30,8 +31,14 @@ namespace HW_WebAddressbookTests
             newCont.Byear = "1639";
             newCont.Notes = "He played an important role in the Battle of Poltava";
 
-            appMan.Contact.IsContactExist();
-            appMan.Contact.Modify(newCont);
+            if (!appMan.Contact.IsContactTrue())
+            {
+                Thread.CurrentThread.Abort();
+            }
+            else
+            {
+                appMan.Contact.Modify(newCont);
+            }
         }
     }
 }
