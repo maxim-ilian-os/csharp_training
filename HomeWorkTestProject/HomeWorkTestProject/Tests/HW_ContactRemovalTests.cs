@@ -14,7 +14,9 @@ namespace HW_WebAddressbookTests
         [Test]
         public void HW_ContactRemovalTest()
         {
-            
+
+            appMan.Contact.IsContactExist();
+
             List<ContactData> oldContacts = appMan.Contact.GetContactList();
             appMan.Contact.Remove();
 

@@ -13,13 +13,16 @@ namespace HW_WebAddressbookTests
         [Test]
         public void HW_GroupRemovalTest()
         {
+            int indx = 0;
+            appMan.Group.IsGroupExist();
+            
             List<GroupData> oldGroups = appMan.Group.GetGroupList();
-            //appMan.Group.Remove();
-            appMan.Group.Remove(0);
+            appMan.Group.Remove(indx);
 
             List<GroupData> newGroups = appMan.Group.GetGroupList();
-            oldGroups.RemoveAt(0);
+            oldGroups.RemoveAt(indx);
             Assert.AreEqual(oldGroups, newGroups);
+          
         }
     }
 }

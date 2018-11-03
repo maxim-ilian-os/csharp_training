@@ -19,7 +19,10 @@ namespace HW_WebAddressbookTests
             appMan.Group.Create(group);
 
             List<GroupData> newGroups = appMan.Group.GetGroupList();
-            Assert.AreEqual(oldGroups.Count + 1, newGroups.Count);
+            oldGroups.Add(group);
+            oldGroups.Sort();
+            newGroups.Sort();
+            Assert.AreEqual(oldGroups, newGroups);
         }
 
         [Test]
@@ -35,7 +38,29 @@ namespace HW_WebAddressbookTests
             appMan.Group.Create(group);
 
             List<GroupData> newGroups = appMan.Group.GetGroupList();
-            Assert.AreEqual(oldGroups.Count + 1, newGroups.Count);
+            oldGroups.Add(group);
+            oldGroups.Sort();
+            newGroups.Sort();
+            Assert.AreEqual(oldGroups, newGroups);
+        }
+
+        [Test]
+        public void HW_BadNameGroupCreationTest()
+        {
+            GroupData group = new GroupData("a'a")
+            {
+                Gheader = "",
+                Gfooter = ""
+            };
+
+            List<GroupData> oldGroups = appMan.Group.GetGroupList();
+            appMan.Group.Create(group);
+
+            List<GroupData> newGroups = appMan.Group.GetGroupList();
+            oldGroups.Add(group);
+            oldGroups.Sort();
+            newGroups.Sort();
+            Assert.AreEqual(oldGroups, newGroups);
         }
     }
 }

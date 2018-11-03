@@ -15,12 +15,24 @@ namespace HW_WebAddressbookTests
 
      public void HW_GroupModificationTest()
         {
-            GroupData newData = new GroupData("new1");
-            newData.Gfooter = "new1 footer";
-            newData.Gheader = "new1 header";
+            int indx = 0;
+            GroupData newData = new GroupData("modified");
+            //newData.Gfooter = "new1 footer";
+            //newData.Gheader = "new1 header";
+            newData.Gfooter = null;
+            newData.Gheader = null;
 
-            appMan.Group.Modify(0, newData);
+            appMan.Group.IsGroupExist();
+            List<GroupData> oldGroups = appMan.Group.GetGroupList();
+
+            appMan.Group.Modify(indx, newData);
             //appMan.Group.Modify(newData);
+
+            List<GroupData> newGroups = appMan.Group.GetGroupList();
+            oldGroups[indx].Gname = newData.Gname;
+            oldGroups.Sort();
+            newGroups.Sort();
+            Assert.AreEqual(oldGroups, newGroups);
         }
     }
 }

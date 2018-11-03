@@ -19,7 +19,7 @@ namespace HW_WebAddressbookTests
 
         public ContactHelper Modify(ContactData newCont)
         {
-            IsContactExist();
+            //IsContactExist();
             SelectContactModify();
             FillOutContactData(newCont);
             SubmitContactModify();
@@ -39,7 +39,7 @@ namespace HW_WebAddressbookTests
         
         public ContactHelper Remove()
         {
-            IsContactExist();
+            // IsContactExist();
             ReturnToMainContactsPage();
             SelectContact();
             DeleteContact();
@@ -134,8 +134,9 @@ namespace HW_WebAddressbookTests
             return this;
         }
 
-        public void IsContactExist()
+        /*public void 1IsContactExist()
         {
+            ReturnToMainContactsPage();
             if (!IsElementPresent(By.CssSelector("img[alt=\"Edit\"]")))
             {
                 InitContactCreation();
@@ -144,6 +145,20 @@ namespace HW_WebAddressbookTests
                 SubmitContactCreation();
             }
             ReturnToMainContactsPage();
+        }*/
+
+        public ContactHelper IsContactExist()
+        {
+            ReturnToMainContactsPage();
+            if (!IsElementPresent(By.CssSelector("img[alt=\"Edit\"]")))
+            {
+                InitContactCreation();
+                ContactData contact = new ContactData("Ivan", "Mazepa");
+                FillOutContactData(contact);
+                SubmitContactCreation();
+                ReturnToMainContactsPage();
+            }
+            return this;
         }
 
         string CloseAlertAndGetItsText()

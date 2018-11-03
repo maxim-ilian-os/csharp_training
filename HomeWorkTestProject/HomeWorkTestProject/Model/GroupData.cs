@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace HW_WebAddressbookTests
 {
-    public class GroupData : IEquatable<GroupData>
+    public class GroupData : IEquatable<GroupData>, IComparable<GroupData>
     {
         private string gname;
         private string gheader ="";
@@ -21,6 +21,8 @@ namespace HW_WebAddressbookTests
         public string Gheader { get => gheader; set => gheader = value; }
         public string Gfooter { get => gfooter; set => gfooter = value; }
 
+       
+
         public bool Equals(GroupData other)
         {
             if(Object.ReferenceEquals(other, null))
@@ -34,9 +36,28 @@ namespace HW_WebAddressbookTests
             return Gname == other.Gname;
         }
 
-        public int GetHashCode()
+        public override int GetHashCode()
         {
             return Gname.GetHashCode();
+        }
+
+        public int CompareTo(GroupData other)
+        {
+            if(Object.ReferenceEquals(other, null))
+            {
+                return 1;
+            }
+
+            if (Object.ReferenceEquals(this, other))
+            {
+                return 0;
+            }
+            return Gname.CompareTo(other.Gname);
+        }
+        
+        public override string ToString()
+        {
+            return "Name= " + Gname;
         }
     }
 }
