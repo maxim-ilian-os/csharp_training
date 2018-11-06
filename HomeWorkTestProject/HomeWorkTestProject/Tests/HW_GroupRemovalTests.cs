@@ -17,17 +17,16 @@ namespace HW_WebAddressbookTests
 
             if (!appMan.Group.IsGroupTrue())
             {
-                Thread.CurrentThread.Abort();
+                GroupData group = new GroupData("Empty group");
+                appMan.Group.Create(group);
             }
-            else
-            { 
+            
             List<GroupData> oldGroups = appMan.Group.GetGroupList();
             appMan.Group.Remove(indx);
 
             List<GroupData> newGroups = appMan.Group.GetGroupList();
             oldGroups.RemoveAt(indx);
             Assert.AreEqual(oldGroups, newGroups);
-            }
         }
     }
 }

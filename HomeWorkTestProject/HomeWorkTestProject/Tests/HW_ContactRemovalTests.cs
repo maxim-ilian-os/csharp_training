@@ -17,17 +17,14 @@ namespace HW_WebAddressbookTests
 
             if (!appMan.Contact.IsContactTrue())
             {
-                Thread.CurrentThread.Abort();
+                ContactData contact = new ContactData("Empty", "Contact");
+                appMan.Contact.Create(contact); 
             }
-            else
-            {
+
                 List<ContactData> oldContacts = appMan.Contact.GetContactList();
                 appMan.Contact.Remove();
-
                 List<ContactData> newContacts = appMan.Contact.GetContactList();
-
                 Assert.AreEqual(oldContacts.Count - 1, newContacts.Count);
-            }
         }
     }
 }

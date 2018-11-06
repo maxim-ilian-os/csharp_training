@@ -33,12 +33,14 @@ namespace HW_WebAddressbookTests
 
             if (!appMan.Contact.IsContactTrue())
             {
-                Thread.CurrentThread.Abort();
+                if (!appMan.Contact.IsContactTrue())
+                {
+                    ContactData contact = new ContactData("Empty", "Contact");
+                    appMan.Contact.Create(contact);
+                }
             }
-            else
-            {
+            
                 appMan.Contact.Modify(newCont);
-            }
         }
     }
 }
