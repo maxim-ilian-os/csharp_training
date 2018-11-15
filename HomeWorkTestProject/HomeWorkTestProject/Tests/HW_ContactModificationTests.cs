@@ -33,14 +33,22 @@ namespace HW_WebAddressbookTests
 
             if (!appMan.Contact.IsContactTrue())
             {
-                if (!appMan.Contact.IsContactTrue())
-                {
+                //if (!appMan.Contact.IsContactTrue())
+                //{
                     ContactData contact = new ContactData("Empty", "Contact");
                     appMan.Contact.Create(contact);
-                }
+                //}
             }
-            
-                appMan.Contact.Modify(newCont);
+
+            var indx = 0;
+            List<ContactData> oldContacts = appMan.Contact.GetContactList();
+            appMan.Contact.Modify(newCont);
+            List<ContactData> newContacts = appMan.Contact.GetContactList();
+            oldContacts[indx].Firstname = newCont.Firstname;
+            oldContacts[indx].Lastname = newCont.Lastname;
+            oldContacts.Sort();
+            newContacts.Sort();
+            Assert.AreEqual(oldContacts, newContacts);
         }
     }
 }
