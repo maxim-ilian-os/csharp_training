@@ -52,12 +52,17 @@ namespace HW_WebAddressbookTests
             List<ContactData> contacts = new List<ContactData>();
 
             manager.Navigator.OpenHomePage();
-            ICollection<IWebElement> elements = driver.FindElements(By.CssSelector("[name='entry']"));
-            System.Console.Out.Write(elements);
+            //ICollection<IWebElement> elements = driver.FindElements(By.Name("entry"));
+            ICollection<IWebElement> elements = driver.FindElements(By.CssSelector("tr[name=entry]"));
+            
             foreach (IWebElement element in elements)
             {
-                contacts.Add(new ContactData(element.Text,""));
+                var cells = element.FindElements(By.CssSelector("td"));
+
+                contacts.Add(new ContactData(cells[2].Text, cells[1].Text));
+              //System.Diagnostics.Debug.WriteLine("Debug Information --> cells[2].Text = " + cells[2].Text + " cells[1].Text = " + cells[1].Text );
             }
+
             return contacts;
         }
 

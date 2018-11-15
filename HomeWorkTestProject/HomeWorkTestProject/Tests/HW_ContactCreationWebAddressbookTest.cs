@@ -29,9 +29,11 @@ namespace HW_WebAddressbookTests
             
             List<ContactData> oldContact = appMan.Contact.GetContactList();
             appMan.Contact.Create(contact);
-
             List<ContactData> newContact = appMan.Contact.GetContactList();
-            Assert.AreEqual(oldContact.Count + 1, newContact.Count);
+            oldContact.Add(contact);
+            oldContact.Sort();
+            newContact.Sort();
+            Assert.AreEqual(oldContact, newContact);            
         }
 
         [Test]
@@ -50,8 +52,15 @@ namespace HW_WebAddressbookTests
             contact.Bmouth = "";
             contact.Byear = "";
             contact.Notes = "";
+
+            List<ContactData> oldContact = appMan.Contact.GetContactList();
             appMan.Contact.Create(contact);
-            //navigator.LogOut();
+            List<ContactData> newContact = appMan.Contact.GetContactList();
+            oldContact.Add(contact);
+            oldContact.Sort();
+            newContact.Sort();
+            Assert.AreEqual(oldContact, newContact);
+          //navigator.LogOut();
         }
     }
 }
