@@ -84,21 +84,24 @@ namespace HW_WebAddressbookTests
 
         public int CompareTo(ContactData other)
         {
-            if (Object.ReferenceEquals(other, null))
+            if (object.ReferenceEquals(other, null))
             {
                 return 1;
             }
 
-            if (Object.ReferenceEquals(this, other))
+            if (Lastname.CompareTo(other.Lastname) == 0)
             {
-                return 0;
+                if (Firstname.CompareTo(other.Firstname) == 0)
+                {
+                    //System.Diagnostics.Debug.WriteLine("LastName -  OK;  Firstname - OK");
+                    return Lastname.CompareTo(other.Lastname) + Firstname.CompareTo(other.Firstname);
+                }
             }
-            
-            return this.Firstname.CompareTo(other.Firstname) & this.Lastname.CompareTo(other.Lastname);
-            //return this.firstname.CompareTo(other.firstname);
+            //System.Diagnostics.Debug.WriteLine("LastName -  OK;   Firstname - IS NOT OK");
+            return Lastname.CompareTo(other.Lastname);
         }
 
-        public bool Equals(ContactData other)
+       public bool Equals(ContactData other)
         {
             if (Object.ReferenceEquals(other, null))
             {
