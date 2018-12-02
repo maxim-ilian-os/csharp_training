@@ -8,20 +8,18 @@ namespace HW_WebAddressbookTests
 {
     public class GroupData : IEquatable<GroupData>, IComparable<GroupData>
     {
-        private string gname;
-        private string gheader ="";
-        private string gfooter ="";
+        //private string gname; private string gheader =""; private string gfooter ="";
 
         public GroupData(string gname)
         {
-            this.gname = gname;
+            Gname = gname; //this.gname = gname;
         }
 
-        public string Gname { get => gname; set => gname = value; }
-        public string Gheader { get => gheader; set => gheader = value; }
-        public string Gfooter { get => gfooter; set => gfooter = value; }
-
-       
+        //public string Gname { get => gname; set => gname = value; }
+        public string Gname { get; set; }
+        public string Gheader { get; set; }
+        public string Gfooter { get; set; }
+        public string Id { get; set; }
 
         public bool Equals(GroupData other)
         {

@@ -27,7 +27,7 @@ namespace HW_WebAddressbookTests
                 oldContacts.RemoveAt(0);
                 oldContacts.Sort();
                 newContacts.Sort();
-                Assert.AreEqual(oldContacts.Count, newContacts.Count);
+                //Assert.AreEqual(oldContacts.Count, newContacts.Count);
                 Assert.AreEqual(oldContacts, newContacts);
         }
     }

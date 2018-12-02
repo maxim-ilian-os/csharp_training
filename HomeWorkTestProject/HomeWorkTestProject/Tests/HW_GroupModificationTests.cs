@@ -12,9 +12,9 @@ namespace HW_WebAddressbookTests
 
     public class HW_GroupModificationTests : HW_AuthTestBase
     {
-     [Test]
+        [Test]
 
-     public void HW_GroupModificationTest()
+        public void HW_GroupModificationTest()
         {
             int indx = 0;
             GroupData newData = new GroupData("modified");
@@ -29,14 +29,24 @@ namespace HW_WebAddressbookTests
                 GroupData group = new GroupData("Empty group");
                 appMan.Group.Create(group);
             }
-            
+
             List<GroupData> oldGroups = appMan.Group.GetGroupList();
+            GroupData oldData = oldGroups[indx];
+
             appMan.Group.Modify(indx, newData);
             List<GroupData> newGroups = appMan.Group.GetGroupList();
             oldGroups[indx].Gname = newData.Gname;
             oldGroups.Sort();
             newGroups.Sort();
-            Assert.AreEqual(oldGroups, newGroups);            
+            Assert.AreEqual(oldGroups, newGroups);
+
+            foreach (GroupData group in newGroups)
+            {
+                if (group.Id == oldData.Id)
+                {
+                    Assert.AreEqual(newData.Gname, group.Gname);
+                }
+            }
         }
     }
 }

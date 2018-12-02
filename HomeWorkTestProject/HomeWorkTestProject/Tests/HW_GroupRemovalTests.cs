@@ -27,6 +27,11 @@ namespace HW_WebAddressbookTests
             List<GroupData> newGroups = appMan.Group.GetGroupList();
             oldGroups.RemoveAt(indx);
             Assert.AreEqual(oldGroups, newGroups);
+
+            foreach (GroupData group in newGroups)
+            {
+                Assert.AreNotEqual(group.Id, oldGroups[indx].Id);
+            }
         }
     }
 }

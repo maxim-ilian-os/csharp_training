@@ -23,7 +23,7 @@ namespace HW_WebAddressbookTests
             SelectContactModify();
             FillOutContactData(newCont);
             SubmitContactModify();
-            
+            contactCache = null;
             return this;
         }
 
@@ -33,6 +33,7 @@ namespace HW_WebAddressbookTests
             FillOutContactData(contact);
             SubmitContactCreation();
             ReturnToMainContactsPage();
+            contactCache = null;
             return this;
         }
 
@@ -43,27 +44,31 @@ namespace HW_WebAddressbookTests
             ReturnToMainContactsPage();
             SelectContact();
             DeleteContact();
+            contactCache = null;
             //ReturnToMainContactsPage();
             return this;
         }
 
+        private List<ContactData> contactCache = null;
+
         public List<ContactData> GetContactList()
-         {
-            List<ContactData> contacts = new List<ContactData>();
+        {
 
-            manager.Navigator.OpenHomePage();
-            //ICollection<IWebElement> elements = driver.FindElements(By.Name("entry"));
-            ICollection<IWebElement> elements = driver.FindElements(By.CssSelector("tr[name=entry]"));
-            
-            foreach (IWebElement element in elements)
+            if (contactCache == null)
             {
-                var cells = element.FindElements(By.CssSelector("td"));
+                contactCache = new List<ContactData>();
+                manager.Navigator.OpenHomePage();
+                ICollection<IWebElement> elements = driver.FindElements(By.CssSelector("tr[name=entry]"));
 
-                contacts.Add(new ContactData(cells[2].Text, cells[1].Text));
-              //System.Diagnostics.Debug.WriteLine("Debug Information --> cells[2].Text = " + cells[2].Text + " cells[1].Text = " + cells[1].Text );
+                foreach (IWebElement element in elements)
+                {
+                    var cells = element.FindElements(By.CssSelector("td"));
+
+                    contactCache.Add(new ContactData(cells[2].Text, cells[1].Text));
+                    //System.Diagnostics.Debug.WriteLine("Debug Information --> cells[2].Text = " + cells[2].Text + " cells[1].Text = " + cells[1].Text );
+                }
             }
-
-            return contacts;
+            return new List<ContactData>(contactCache);
         }
 
         public ContactHelper InitContactCreation()
@@ -90,6 +95,7 @@ namespace HW_WebAddressbookTests
             driver.FindElement(By.CssSelector("option[value=" + "\"" + contact.Bmouth + "\"" + "]")).Click();
             Type(By.Name("byear"), contact.Byear);
             Type(By.Name("notes"), contact.Notes);
+            contactCache = null;
             return this;
         }
 
@@ -111,6 +117,7 @@ namespace HW_WebAddressbookTests
         {
             driver.FindElement(By.XPath("//input[@value='Delete']")).Click();
             Assert.IsTrue(Regex.IsMatch(CloseAlertAndGetItsText(), "^Delete 1 addresses[\\s\\S]$"));
+            contactCache = null;
             return this;
         }
 
@@ -135,7 +142,6 @@ namespace HW_WebAddressbookTests
         {
             driver.FindElement(By.CssSelector("img[alt=\"Edit\"]")).Click();
             //iver.FindElement(By.XPath("(//input[@name='edit'])[1]")).Click();
-
             return this;
         }
 
