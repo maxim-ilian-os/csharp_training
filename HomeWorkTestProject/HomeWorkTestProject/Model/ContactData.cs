@@ -9,9 +9,9 @@ namespace HW_WebAddressbookTests
 {
     public class ContactData : IEquatable<ContactData>, IComparable<ContactData>
     {
-        private string firstname;
-        private string middlename = "";
-        private string lastname = "";
+        //private string firstname;
+        //private string middlename = "";
+        //private string lastname = "";
         //private string nickname = "";
         private string photo ="";
         private string title = "";
@@ -36,8 +36,8 @@ namespace HW_WebAddressbookTests
         private string secaddress ="";
         private string sechome ="";
         private string notes = "";
+        private string allEmails;
 
-        
         public ContactData(string firstname, string lastname)
         {
             //this.firstname = firstname;
@@ -45,40 +45,80 @@ namespace HW_WebAddressbookTests
             Lastname = lastname;
         }
 
+        public String GetFullString()
+        {
+            return FullName + Address + AllPhones + AllEmails;
+        }
+
+        public ContactData()
+        {
+            allPhones = "";
+        }
+
         //public string Firstname { get => firstname; set => firstname = value; }
         public string Firstname { get; set; }
         public string Middlename { get; set; }
         public string Lastname { get; set; }
         public string Nickname { get ; set ; }
+        public string FullName { get; set; }
 
         public string Homepage { get; set; }
        
-        public string Group { get => group; set => group = value; }
-        public string Secaddress { get => secaddress; set => secaddress = value; }
-        public string Sechome { get => sechome; set => sechome = value; }
-        public string Notes { get => notes; set => notes = value; }
-        public string Bday { get => bday; set => bday = value; }
-        public string Bmouth { get => bmonth; set => bmonth = value; }
-        public string Byear { get => byear; set => byear = value; }
-        public string Aday { get => aday; set => aday = value; }
-        public string Amounth { get => amounth; set => amounth = value; }
-        public string Ayear { get => ayear; set => ayear = value; }
-        public string E_mail2 { get => e_mail2; set => e_mail2 = value; }
-        public string E_mail3 { get => e_mail3; set => e_mail3 = value; }
-        public string Fax { get => fax; set => fax = value; }
-        public string Photo { get => Photo1; set => Photo1 = value; }
-        
-        public string Photo1 { get => photo; set => photo = value; }
-        public string Title { get => title; set => title = value; }
-        public string Company { get => company; set => company = value; }
+        public string Group { get; set; }
+
+        public string Secaddress { get; set; }
+        public string Sechome { get; set; }
+
+        public string Notes { get; set; }
+
+        public string Bday { get; set; }
+        public string Bmouth { get ; set ; }
+        public string Byear { get ; set; }
+        public string Aday { get; set ; }
+        public string Amounth { get ; set ; }
+        public string Ayear { get; set; }
+
+        public string E_mail { get ; set ; }
+        public string E_mail2 { get; set; }
+        public string E_mail3 { get ; set ; }
+
+        public string AllEmails
+        {
+            get
+            {
+                if (allEmails != null)
+                {
+                    return allEmails;
+                }
+                else
+                {
+                    string result = "";
+                    if (E_mail != null && E_mail != "") { result += E_mail + "\r\n"; }
+                    if (E_mail2 != null && E_mail2 != "") { result += E_mail2 + "\r\n"; }
+                    if (E_mail3 != null && E_mail3 != "") { result += E_mail3; }
+                    return result.Trim();
+                }
+            }
+            set
+            {
+                allEmails = value;
+            }
+        }
+
+        public string Photo { get ; set ; }
+        public string Photo1 { get; set; }
+
+        public string Title { get; set ; }
+        public string Company { get; set ; }
 
         public string Address { get; set; }
+        
+        public string HomeTel { get; set ; }
+        public string MobileTel { get ; set ; }
+        public string WorkTel { get; set; }
+        public string Fax { get ; set ; }
 
-        public string Hometel { get; set ; }
-        public string Mobiletel { get ; set ; }
-        public string Worktel { get; set; }
-
-        public string AllTel
+        public string AllPhones
         {
             get
             {
@@ -88,7 +128,7 @@ namespace HW_WebAddressbookTests
                 }
                 else
                 {
-                    return (CleanUp(Hometel) + CleanUp(Mobiletel) + CleanUp(Worktel)).Trim();
+                    return (CleanUp(HomeTel) + CleanUp(MobileTel) + CleanUp(WorkTel)).Trim();
                 }
 
             }
@@ -104,14 +144,10 @@ namespace HW_WebAddressbookTests
             {
                 return "";
             }
-            //return phone.Replace(" ", "").Replace("-", "").Replace("(", "").Replace(")", "") + "\r\n";
-            return Regex.Replace(phone, "[ -()]", "") + "\r\n";
+            return phone.Replace(":", "").Replace(" ", "").Replace("-", "").Replace("(", "").Replace(")", "") + "\r\n";
+            //return Regex.Replace(phone, "[ -()]", "") + "\r\n";
+            //return Regex.Replace(phone, "[ H-M:-MHW:-()]", "") + "\r\n";
         }
-
-
-        public string E_mail { get => E_mail1; set => E_mail1 = value; }
-        public string E_mail1 { get => e_mail; set => e_mail = value; }
-        
 
         public int CompareTo(ContactData other)
         {

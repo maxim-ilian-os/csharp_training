@@ -23,8 +23,8 @@ namespace HW_WebAddressbookTests
             newCont.Title = "Kozak";
             newCont.Company = "Zaporozhskaya Siczh";
             newCont.Address = "Dnepro, Zaporozhskaya Siczh";
-            newCont.Hometel = "5-12-25";
-            newCont.Mobiletel = "5-12-25";
+            newCont.HomeTel = "5-12-25";
+            newCont.MobileTel = "5-12-25";
             newCont.E_mail = "ataman@paper.org";
             newCont.Bday = "20";
             newCont.Bmouth = "March";

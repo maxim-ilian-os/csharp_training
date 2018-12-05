@@ -37,20 +37,51 @@ namespace HW_WebAddressbookTests
             string lastName = cells[1].Text;
             string firstName = cells[2].Text;
             string address = cells[3].Text;
+            string allEmails = cells[4].Text;
             string allPhones = cells[5].Text;
+            
 
             return new ContactData(firstName, lastName)
             {
                 Address = address,
-                AllTel = allPhones
+                AllPhones = allPhones,
+                AllEmails = allEmails
             };
 
+        }
+        
+       
+        public ContactData GetContactInformationFromDetails(int indx)
+        {
+            ReturnToMainContactsPage();
+            InitContactDetails(indx);
+
+            string textData = driver.FindElement(By.XPath(@"//div[@id='content']")).Text;
+            System.Diagnostics.Debug.WriteLine("Debug Information --> textData  = " + textData);
+            string[] splittedAllData = textData.Split(new[] { "\r\n\r\n" }, StringSplitOptions.None);
+
+            string[] fullNameAndAddress = splittedAllData[0].Split(new[] { "\r\n" }, StringSplitOptions.None);
+            string fullName = fullNameAndAddress[0];
+            string address = (fullNameAndAddress.Length > 1) ? fullNameAndAddress[4] : "";
+
+            //string allTel = splittedAllData.Length > 1 ? GetAllTel(splittedAllData[1]) : "";
+            string allTel = splittedAllData.Length > 1 ? GetTel(splittedAllData[1]) : "";
+            string[] fio  = fullName.Split(new[] { ' ' }, StringSplitOptions.None);
+            string firsname = fio[0];
+            string lastname = fio[2];
+
+            return new ContactData(firsname, lastname)
+            {
+                FullName = fullName,
+                Address = address,
+                AllPhones = allTel
+            };
         }
 
         public ContactData GetContactInformationFromEditForm(int indx)
         {
             ReturnToMainContactsPage();
-            InitContactModification(0);
+            InitContactModification(indx);
 
             string firstName = driver.FindElement(By.Name("firstname")).GetAttribute("value");
             string lastName = driver.FindElement(By.Name("lastname")).GetAttribute("value");
@@ -59,13 +90,19 @@ namespace HW_WebAddressbookTests
             string homePhone = driver.FindElement(By.Name("home")).GetAttribute("value");
             string mobilePhone = driver.FindElement(By.Name("mobile")).GetAttribute("value");
             string workPhone = driver.FindElement(By.Name("work")).GetAttribute("value");
+            string email = driver.FindElement(By.Name("email")).GetAttribute("value");
+            string email2 = driver.FindElement(By.Name("email2")).GetAttribute("value");
+            string email3 = driver.FindElement(By.Name("email3")).GetAttribute("value");
 
             return new ContactData(firstName, lastName)
             {
                 Address = address,
-                Hometel = homePhone,
-                Mobiletel = mobilePhone,
-                Worktel = workPhone
+                HomeTel = homePhone,
+                MobileTel = mobilePhone,
+                WorkTel = workPhone,
+                E_mail = email,
+                E_mail2 = email2,
+                E_mail3 = email3
             }; 
         }
 
@@ -74,6 +111,13 @@ namespace HW_WebAddressbookTests
             driver.FindElements(By.Name("entry"))[indx]
             .FindElements(By.TagName("td"))[7]
             .FindElement(By.TagName("a")).Click();
+        }
+
+        private void InitContactDetails(int indx)
+        {
+            driver.FindElements(By.Name("entry"))[indx]
+                .FindElements(By.TagName("td"))[6]
+                .FindElement(By.TagName("a")).Click();
         }
 
         public ContactHelper Create(ContactData contact)          
@@ -133,8 +177,8 @@ namespace HW_WebAddressbookTests
             Type(By.Name("title"), contact.Title);
             Type(By.Name("company"), contact.Company);
             Type(By.Name("address"), contact.Address);
-            Type(By.Name("home"), contact.Hometel);
-            Type(By.Name("mobile"), contact.Mobiletel);
+            Type(By.Name("home"), contact.HomeTel);
+            Type(By.Name("mobile"), contact.MobileTel);
             Type(By.Name("email"), contact.E_mail);
             driver.FindElement(By.Name("bday")).Click();
             driver.FindElement(By.CssSelector("option[value=" + "\"" + contact.Bday + "\"" + "]")).Click();
@@ -244,6 +288,21 @@ namespace HW_WebAddressbookTests
             string text=  driver.FindElement(By.TagName("label")).Text;
             Match m = new Regex(@"\d+").Match(text);
             return Int32.Parse(m.Value);
+        }
+
+       
+        private String GetTel(string telFromDetails)
+        {
+            
+                if (telFromDetails == null || telFromDetails == "")
+                {
+                    return "";
+                }
+            //telFromDetails.Split(new[] { "\r\n" })
+            string[] tels = telFromDetails.Split(new[] { "\r\n" }, StringSplitOptions.None);
+            string tel1 = Regex.Replace(tels[0], "[ HM:-]", "");
+            string tel2 = Regex.Replace(tels[1], "[ HM:-]", "");
+            return tel1 + "\r\n" + tel2;
         }
     }
 }     

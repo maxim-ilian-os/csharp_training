@@ -20,8 +20,21 @@ namespace HW_WebAddressbookTests
             //verific
             Assert.AreEqual(fromTable, fromForm);
             Assert.AreEqual(fromTable.Address, fromForm.Address);
-            Assert.AreEqual(fromTable.AllTel, fromForm.AllTel);
+            Assert.AreEqual(fromTable.AllPhones, fromForm.AllPhones);
+            Assert.AreEqual(fromTable.AllEmails, fromForm.AllEmails);
 
         }
+
+        [TestCase]
+        public void TestContactDetails()
+        {
+            ContactData fromTable = appMan.Contact.GetContactInformationFromTable(0);
+            ContactData fromDetails = appMan.Contact.GetContactInformationFromDetails(0);
+            
+            //verific
+            Assert.AreEqual(fromDetails, fromTable);
+            Assert.AreEqual(fromDetails.Address, fromTable.Address);
+            Assert.AreEqual(fromDetails.AllPhones, fromTable.AllPhones);
+           }
     }
 }
