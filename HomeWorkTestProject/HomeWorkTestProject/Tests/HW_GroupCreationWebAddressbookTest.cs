@@ -1,4 +1,5 @@
 ﻿using NUnit.Framework;
+using System;
 using System.Collections.Generic;
 
 namespace HW_WebAddressbookTests
@@ -6,14 +7,30 @@ namespace HW_WebAddressbookTests
     [TestFixture]
     public class GroupCreationTests : HW_AuthTestBase
     {
-        [Test]
-        public void HW_GroupCreationTest()
+
+        public static IEnumerable<GroupData> RandomGroupDataProvider()
         {
-            GroupData group = new GroupData("Focus Group A")
+            List<GroupData> groups = new List<GroupData>();
+            for (int i = 0; i < 5; i++)
+                {
+                groups.Add(new GroupData(GenerateRandomString(30))
+                {
+                    Gheader = GenerateRandomString(100),
+                    Gfooter = GenerateRandomString(100)
+                });
+                }
+            return groups;
+        }
+
+
+        [Test, TestCaseSource("RandomGroupDataProvider")]
+        public void HW_GroupCreationTest(GroupData group)
+        {
+            /*GroupData group = new GroupData("Focus Group A")
             {
                 Gheader = "Focus A",
                 Gfooter = "Focus A footer"
-            };
+            };*/
 
             List<GroupData> oldGroups = appMan.Group.GetGroupList();
             appMan.Group.Create(group);
@@ -25,8 +42,8 @@ namespace HW_WebAddressbookTests
             Assert.AreEqual(oldGroups, newGroups);
         }
 
-        [Test]
-        public void HW_EmptyGroupCreationTest()
+        /*[Test]
+         public void HW_EmptyGroupCreationTest()
         {
             GroupData group = new GroupData("")
             {
@@ -42,7 +59,7 @@ namespace HW_WebAddressbookTests
             oldGroups.Sort();
             newGroups.Sort();
             Assert.AreEqual(oldGroups, newGroups);
-        }
+        }*/
 
         [Test]
         public void HW_BadNameGroupCreationTest()

@@ -27,7 +27,7 @@ namespace HW_WebAddressbookTests
             newCont.MobileTel = "5-12-25";
             newCont.E_mail = "ataman@paper.org";
             newCont.Bday = "20";
-            newCont.Bmouth = "March";
+            newCont.Bmonth = "March";
             newCont.Byear = "1639";
             newCont.Notes = "He played an important role in the Battle of Poltava";
 

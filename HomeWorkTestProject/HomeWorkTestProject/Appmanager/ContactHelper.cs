@@ -183,7 +183,7 @@ namespace HW_WebAddressbookTests
             driver.FindElement(By.Name("bday")).Click();
             driver.FindElement(By.CssSelector("option[value=" + "\"" + contact.Bday + "\"" + "]")).Click();
             driver.FindElement(By.Name("bmonth")).Click();
-            driver.FindElement(By.CssSelector("option[value=" + "\"" + contact.Bmouth + "\"" + "]")).Click();
+            driver.FindElement(By.CssSelector("option[value=" + "\"" + contact.Bmonth + "\"" + "]")).Click();
             Type(By.Name("byear"), contact.Byear);
             Type(By.Name("notes"), contact.Notes);
             contactCache = null;

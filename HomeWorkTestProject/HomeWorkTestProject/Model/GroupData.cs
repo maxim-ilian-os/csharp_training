@@ -55,7 +55,7 @@ namespace HW_WebAddressbookTests
         
         public override string ToString()
         {
-            return "Name= " + Gname;
+            return "Name= " + Gname + "\nHeader= " + Gheader + "\nFooter= " + Gfooter;
         }
     }
 }

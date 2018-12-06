@@ -10,6 +10,41 @@ namespace HW_WebAddressbookTests
     [TestFixture]
     public class ContactCreationTests : HW_AuthTestBase
     {
+        public static IEnumerable<ContactData> RandomContactDataProvider()
+            {
+            List<ContactData> contacts = new List<ContactData>();
+            for (int i = 0; i < 2; i++)
+                {
+                contacts.Add(new ContactData(GenerateRandomString(10), GenerateRandomString(10))
+                {
+                    Middlename = GenerateRandomString(10),
+                    Nickname = GenerateRandomString(10),
+                    Title = GenerateRandomString(15),
+                    Company = GenerateRandomString(15),
+                    Address = GenerateRandomString(10) +" , " + GenerateRandomString(10),
+                    HomeTel = GenerateRandomString(8),
+                    MobileTel = GenerateRandomString(11),
+                    E_mail = GenerateRandomString(7) +"@"+ GenerateRandomString(5)+"."+ GenerateRandomString(3),
+                    Notes = GenerateRandomString(15)
+                });
+            }
+             return contacts;
+        }
+
+        [Test, TestCaseSource("RandomContactDataProvider")]
+        public void HW_RandomContactCreationTest(ContactData contact)
+        {
+            List<ContactData> oldContacts = appMan.Contact.GetContactList();
+            appMan.Contact.Create(contact);
+            
+            List<ContactData> newContacts = appMan.Contact.GetContactList();
+
+            oldContacts.Add(contact);
+            oldContacts.Sort();
+            newContacts.Sort();
+            Assert.AreEqual(oldContacts, newContacts);
+        }
+
         [Test]
         public void HW_ContactCreatoinTest()
         {
@@ -23,7 +58,7 @@ namespace HW_WebAddressbookTests
             contact.MobileTel = "5-12-25";
             contact.E_mail = "ataman@paper.org";
             contact.Bday = "20";
-            contact.Bmouth = "March";
+            contact.Bmonth = "March";
             contact.Byear = "1639";
             contact.Notes = "He played an important role in the Battle of Poltava";
             
@@ -49,7 +84,7 @@ namespace HW_WebAddressbookTests
             contact.MobileTel = "";
             contact.E_mail = "";
             contact.Bday = "";
-            contact.Bmouth = "";
+            contact.Bmonth = "";
             contact.Byear = "";
             contact.Notes = "";
 
