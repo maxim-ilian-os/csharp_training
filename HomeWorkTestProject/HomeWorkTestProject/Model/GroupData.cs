@@ -15,6 +15,11 @@ namespace HW_WebAddressbookTests
             Gname = gname; //this.gname = gname;
         }
 
+        public GroupData()
+        {
+            
+        }
+
         //public string Gname { get => gname; set => gname = value; }
         public string Gname { get; set; }
         public string Gheader { get; set; }
